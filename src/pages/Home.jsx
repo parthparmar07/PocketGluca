@@ -204,134 +204,63 @@ const Home = () => {
                         </p>
                     </AnimatedSection>
 
-                    {/* Premium Flavor Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Peach Mango */}
-                        <AnimatedSection delay={0.1}>
-                            <Link to="/products/peach-mango-glucose-shots-set-of-6" className="group block h-full">
-                                <div className="h-[28rem] rounded-[2.5rem] bg-gradient-to-b from-orange-50 to-orange-100 p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-orange-100 shadow-sm hover:shadow-xl hover:shadow-orange-500/10">
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-orange-300/20 rounded-full blur-[60px] -mr-16 -mt-16 transition-opacity group-hover:opacity-100" />
+                    {/* 3D Circular Gallery - Refined */}
+                    <div className="relative w-full h-[500px] flex items-center justify-center overflow-visible" style={{ perspective: "1000px" }}>
+                        <motion.div
+                            className="relative w-[260px] h-[380px]"
+                            style={{ transformStyle: "preserve-3d" }}
+                            animate={{ rotateY: 360 }}
+                            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                        >
+                            {[
+                                { name: "Peach Mango", sub: "Pause a little", color: "orange", gradient: "from-orange-50 to-orange-100", border: "border-orange-100", hue: "0deg" },
+                                { name: "Lemon Mint", sub: "Lie down", color: "lime", gradient: "from-yellow-50 to-lime-50", border: "border-lime-100", hue: "45deg" },
+                                { name: "Butterscotch", sub: "Be right back", color: "amber", gradient: "from-amber-50 to-orange-50", border: "border-amber-100", hue: "15deg" },
+                                { name: "Watermelon", sub: "What a saviour", color: "red", gradient: "from-red-50 to-pink-50", border: "border-red-100", hue: "320deg" },
+                            ].map((flavor, index) => (
+                                <div
+                                    key={index}
+                                    className="absolute inset-0"
+                                    style={{
+                                        transform: `rotateY(${index * 90}deg) translateZ(350px)`,
+                                    }}
+                                >
+                                    <Link to="/products/peach-mango-glucose-shots-set-of-6" className="group block h-full w-full">
+                                        <div className={`h-full w-full rounded-[2rem] bg-gradient-to-b ${flavor.gradient} p-6 relative overflow-hidden border ${flavor.border} shadow-lg backdrop-blur-md opacity-90 hover:opacity-100 transition-all hover:-translate-y-2`}>
 
-                                    {/* 3D Bottle Image - Peach */}
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-auto z-10 transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-6 group-hover:-translate-y-[60%]">
-                                        <img
-                                            src="/images/product/bottle-front.png"
-                                            alt="Peach Mango Bottle"
-                                            className="w-full h-full object-contain drop-shadow-2xl"
-                                        />
-                                    </div>
+                                            {/* Glow */}
+                                            <div className={`absolute top-0 right-0 w-32 h-32 bg-${flavor.color}-400/20 rounded-full blur-[40px] -mr-8 -mt-8`} />
 
-                                    <div className="h-full flex flex-col justify-between relative z-20">
-                                        <div className="flex justify-between items-start">
-                                            <span className="text-orange-900/60 font-medium text-sm tracking-widest uppercase">01</span>
-                                            <ArrowUpRight className="w-6 h-6 text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            {/* Bottle - Slightly smaller */}
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-auto z-10">
+                                                <img
+                                                    src="/images/product/bottle-front.png"
+                                                    alt={flavor.name}
+                                                    className="w-full h-full object-contain drop-shadow-2xl"
+                                                    style={{ filter: `hue-rotate(${flavor.hue})` }}
+                                                />
+                                            </div>
+
+                                            {/* Content */}
+                                            <div className="h-full flex flex-col justify-between relative z-20">
+                                                <div className="flex justify-between items-start">
+                                                    <span className={`text-${flavor.color}-900/60 font-medium text-xs tracking-widest uppercase`}>0{index + 1}</span>
+                                                </div>
+                                                <div>
+                                                    <span className={`text-3xl font-display text-${flavor.color}-900 leading-none mb-1 block`}>
+                                                        {flavor.name.split(' ').map((line, i) => <span key={i} className="block">{line}</span>)}
+                                                    </span>
+                                                    <span className={`text-${flavor.color}-800/70 text-xs font-medium`}>"{flavor.sub}"</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span className="text-3xl font-display text-orange-900 leading-none mb-2 block relative">
-                                                Peach<br />Mango
-                                            </span>
-                                            <span className="text-orange-700/70 text-sm font-medium">"Pause a little"</span>
-                                        </div>
-                                    </div>
+                                    </Link>
                                 </div>
-                            </Link>
-                        </AnimatedSection>
+                            ))}
+                        </motion.div>
 
-                        {/* Lemon Mint */}
-                        <AnimatedSection delay={0.2}>
-                            <Link to="/products/peach-mango-glucose-shots-set-of-6" className="group block h-full">
-                                <div className="h-[28rem] rounded-[2.5rem] bg-gradient-to-b from-yellow-50 to-lime-50 p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-lime-100 shadow-sm hover:shadow-xl hover:shadow-lime-500/10">
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-300/20 rounded-full blur-[60px] -mr-16 -mt-16" />
-
-                                    {/* 3D Bottle Image - Lemon (Hue Shift) */}
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-auto z-10 transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-6 group-hover:-translate-y-[60%]">
-                                        <img
-                                            src="/images/product/bottle-front.png"
-                                            alt="Lemon Mint Bottle"
-                                            className="w-full h-full object-contain drop-shadow-2xl brightness-110"
-                                            style={{ filter: 'hue-rotate(45deg) saturate(1.2)' }}
-                                        />
-                                    </div>
-
-                                    <div className="h-full flex flex-col justify-between relative z-20">
-                                        <div className="flex justify-between items-start">
-                                            <span className="text-lime-900/60 font-medium text-sm tracking-widest uppercase">02</span>
-                                            <ArrowUpRight className="w-6 h-6 text-lime-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        </div>
-                                        <div>
-                                            <span className="text-3xl font-display text-lime-900 leading-none mb-2 block relative">
-                                                Lemon<br />Mint
-                                            </span>
-                                            <span className="text-lime-800/70 text-sm font-medium">"Lie down"</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </AnimatedSection>
-
-                        {/* Butterscotch */}
-                        <AnimatedSection delay={0.3}>
-                            <Link to="/products/peach-mango-glucose-shots-set-of-6" className="group block h-full">
-                                <div className="h-[28rem] rounded-[2.5rem] bg-gradient-to-b from-amber-50 to-orange-50 p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-amber-100 shadow-sm hover:shadow-xl hover:shadow-amber-500/10">
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-amber-300/20 rounded-full blur-[60px] -mr-16 -mt-16" />
-
-                                    {/* 3D Bottle Image - Butterscotch (Hue Shift) */}
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-auto z-10 transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-6 group-hover:-translate-y-[60%]">
-                                        <img
-                                            src="/images/product/bottle-front.png"
-                                            alt="Butterscotch Bottle"
-                                            className="w-full h-full object-contain drop-shadow-2xl sepia-[.3]"
-                                            style={{ filter: 'hue-rotate(15deg) contrast(1.1)' }}
-                                        />
-                                    </div>
-
-                                    <div className="h-full flex flex-col justify-between relative z-20">
-                                        <div className="flex justify-between items-start">
-                                            <span className="text-amber-900/60 font-medium text-sm tracking-widest uppercase">03</span>
-                                            <ArrowUpRight className="w-6 h-6 text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        </div>
-                                        <div>
-                                            <span className="text-3xl font-display text-amber-900 leading-none mb-2 block relative">
-                                                Butter-<br />scotch
-                                            </span>
-                                            <span className="text-amber-800/70 text-sm font-medium">"Be right back"</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </AnimatedSection>
-
-                        {/* Watermelon */}
-                        <AnimatedSection delay={0.4}>
-                            <Link to="/products/peach-mango-glucose-shots-set-of-6" className="group block h-full">
-                                <div className="h-[28rem] rounded-[2.5rem] bg-gradient-to-b from-red-50 to-pink-50 p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-red-100 shadow-sm hover:shadow-xl hover:shadow-red-500/10">
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-red-300/20 rounded-full blur-[60px] -mr-16 -mt-16" />
-
-                                    {/* 3D Bottle Image - Watermelon (Hue Shift) */}
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-auto z-10 transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-6 group-hover:-translate-y-[60%]">
-                                        <img
-                                            src="/images/product/bottle-front.png"
-                                            alt="Watermelon Bottle"
-                                            className="w-full h-full object-contain drop-shadow-2xl"
-                                            style={{ filter: 'hue-rotate(320deg) saturate(1.1)' }}
-                                        />
-                                    </div>
-
-                                    <div className="h-full flex flex-col justify-between relative z-20">
-                                        <div className="flex justify-between items-start">
-                                            <span className="text-red-900/60 font-medium text-sm tracking-widest uppercase">04</span>
-                                            <ArrowUpRight className="w-6 h-6 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        </div>
-                                        <div>
-                                            <span className="text-3xl font-display text-red-900 leading-none mb-2 block relative">
-                                                Water-<br />melon
-                                            </span>
-                                            <span className="text-red-800/70 text-sm font-medium">"What a saviour"</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </AnimatedSection>
+                        {/* Floor Shadow */}
+                        <div className="absolute top-[80%] w-[400px] h-[100px] bg-black/5 rounded-[100%] blur-[60px] transform rotateX(60deg) z-0 pointer-events-none" />
                     </div>
                 </div>
             </section>
