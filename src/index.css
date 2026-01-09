@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-cream-100 text-gray-900 font-body;
+    font-feature-settings: 'ss01', 'ss02';
+  }
+
+  ::selection {
+    @apply bg-brand-500 text-white;
+  }
+}
+
+@layer components {
+
+  /* Layout */
+  .container-lg {
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  .section {
+    @apply py-20 md:py-32;
+  }
+
+  /* Typography - matching original's bold display font */
+  .heading-hero {
+    font-family: 'Days One', sans-serif;
+    @apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[0.95] tracking-tight;
+  }
+
+  .heading-lg {
+    font-family: 'Days One', sans-serif;
+    @apply text-4xl sm:text-5xl md:text-6xl font-normal leading-tight;
+  }
+
+  .heading-md {
+    font-family: 'Days One', sans-serif;
+    @apply text-3xl sm:text-4xl font-normal;
+  }
+
+  .heading-sm {
+    font-family: 'Days One', sans-serif;
+    @apply text-2xl sm:text-3xl font-normal;
+  }
+
+  .body-lg {
+    @apply text-lg md:text-xl text-gray-600 leading-relaxed;
+  }
+
+  .body-md {
+    @apply text-base md:text-lg text-gray-600 leading-relaxed;
+  }
+
+  /* Buttons - matching original's style */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-600 text-white font-semibold rounded-full hover:bg-brand-700 transition-all duration-300 shadow-lg shadow-brand-600/20 hover:shadow-xl hover:shadow-brand-600/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-brand-600 font-semibold rounded-full border-2 border-brand-600 hover:bg-brand-600 hover:text-white transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-gray-700 font-medium rounded-full hover:bg-gray-100 transition-all duration-200;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300;
+  }
+
+  .card-flavor {
+    @apply rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg cursor-pointer;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF9F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD0BB;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5C28;
+}
+
+/* Announcement bar animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Wavy animation */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slide 30s linear infinite;
+}
