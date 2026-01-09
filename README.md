@@ -1,18 +1,59 @@
-# React + Vite
+# PocketGluca Redesign 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, clinically-aligned web experience for **PocketGluca** – the 15g precision liquid glucose shot for hypoglycemia management. This project focuses on high-end aesthetics, interactive product visualization, and clear clinical messaging using modern web technologies.
 
-Currently, two official plugins are available:
+![PocketGluca Hero](public/images/hero-lifestyle.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
 
-## React Compiler
+- **Premium Design System:**
+  - "Clinical Luxury" aesthetic blending clean medical whites with vibrant brand oranges.
+  - Custom typography using *Outfit* (Display) and *Inter* (Body).
+  - Glassmorphism & sophisticated gradient overlays.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Interactive 3D Experiences:**
+  - **3D Flavor Carousel:** A rotating, interactive gallery of product flavors using CSS 3D transforms.
+  - **Digital Precision Gauges:** Animated "Smart Monitor" and "Digital Scale" visuals to represent the exact 15g dosage.
+  - **Animated Comparisons:** Dynamic bar charts comparing absorption speed vs. traditional tablets.
 
-Note: This will impact Vite dev & build performances.
+- **Modern Tech Stack:**
+  - **Framework:** React + Vite (Fast HMR)
+  - **Styling:** Tailwind CSS (Utility-first, responsive)
+  - **Animations:** Framer Motion (Complex orchestrations, layout transitions)
+  - **Icons:** Lucide React
 
-## Expanding the ESLint configuration
+## 🛠️ Installation & Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/pocketgluca-redesign.git
+    cd pocketgluca-redesign
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## 📂 Project Structure
+
+- `src/pages/Home.jsx` - Main landing page containing the Hero, 3D Carousel, Features, and CTA sections.
+- `src/components/layout` - Reusable layout components (Navbar, Footer).
+- `src/index.css` - Global styles, Tailwind directives, and custom animations.
+- `tailwind.config.js` - Color palette ('brand', 'cream', 'peach', etc.), fonts, and theme extensions.
+
+## 🎨 Design Philosophy
+
+The redesign aims to shift the brand perception from "clinical necessity" to "lifestyle essential."
+- **Visuals:** High-contrast, large imagery, floating elements.
+- **Motion:** Smooth, physics-based transitions that feel "expensive."
+- **Messaging:** Confident, concise, and focused on speed ("Instant Energy") and precision ("Exact Dose").
+
+---
+*Built for PocketGluca 2026 redesign initiative.*
