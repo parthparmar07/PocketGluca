@@ -504,34 +504,91 @@ const Home = () => {
 
                             {/* Right - Visual */}
                             <div className="relative order-1 lg:order-2">
-                                <div className="aspect-square bg-gray-900 rounded-[3rem] relative overflow-hidden flex items-center justify-center group">
-                                    {/* Background element */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800" />
+                                <div className="aspect-square bg-white rounded-[3rem] relative overflow-hidden border border-cream-100 shadow-xl shadow-brand-500/5 flex flex-col items-center justify-center p-8">
+                                    <div className="absolute top-8 right-8">
+                                        <div className="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full border border-green-100">
+                                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                                            <span className="text-[10px] font-bold uppercase tracking-wide">Optimal</span>
+                                        </div>
+                                    </div>
 
-                                    {/* Animated Ring for Precision */}
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="w-64 h-64 rounded-full border border-white/10 relative">
-                                            <motion.div
-                                                animate={{ rotate: 360 }}
-                                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                                className="absolute inset-0 rounded-full border-t border-brand-500"
+                                    {/* Smart Gauge Container */}
+                                    <div className="relative w-64 h-64 flex items-center justify-center">
+                                        {/* Outer tick marks */}
+                                        <div className="absolute inset-0">
+                                            {[...Array(12)].map((_, i) => (
+                                                <div
+                                                    key={i}
+                                                    className="absolute w-1 h-2 bg-gray-200 top-0 left-1/2 -translate-x-1/2 origin-bottom"
+                                                    style={{
+                                                        transform: `rotate(${i * 30}deg) translateY(0px)`,
+                                                        height: '100%',
+                                                        width: '2px'
+                                                    }}
+                                                >
+                                                    <div className="w-full h-3 bg-gray-200" />
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Progress Rings (SVG) */}
+                                        <svg className="w-full h-full -rotate-90 transform relative z-10">
+                                            {/* Background Track */}
+                                            <circle
+                                                cx="128" cy="128" r="100"
+                                                fill="none"
+                                                stroke="#F3F4F6"
+                                                strokeWidth="12"
+                                                strokeLinecap="round"
                                             />
+                                            {/* Active Progress */}
+                                            <motion.circle
+                                                cx="128" cy="128" r="100"
+                                                fill="none"
+                                                stroke="#FF5C28"
+                                                strokeWidth="12"
+                                                strokeLinecap="round"
+                                                strokeDasharray={2 * Math.PI * 100}
+                                                strokeDashoffset={2 * Math.PI * 100}
+                                                whileInView={{ strokeDashoffset: 0 }}
+                                                viewport={{ once: false }}
+                                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                            />
+                                        </svg>
+
+                                        {/* Center Data */}
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
+                                            <div className="flex items-baseline leading-none">
+                                                <motion.span
+                                                    className="text-7xl font-display text-gray-900 tracking-tighter"
+                                                    initial={{ opacity: 0, scale: 0.5 }}
+                                                    whileInView={{ opacity: 1, scale: 1 }}
+                                                    transition={{ delay: 0.5, type: "spring" }}
+                                                >
+                                                    15
+                                                </motion.span>
+                                                <span className="text-3xl font-display text-brand-500 ml-1">g</span>
+                                            </div>
+                                            <span className="text-gray-400 font-medium text-sm tracking-widest uppercase mt-2">Carbohydrates</span>
+
+                                            {/* Success Check */}
+                                            <motion.div
+                                                initial={{ scale: 0, opacity: 0 }}
+                                                whileInView={{ scale: 1, opacity: 1 }}
+                                                transition={{ delay: 1.5, type: "spring" }}
+                                                className="absolute -bottom-12 flex items-center gap-2 text-brand-600 font-bold bg-brand-50 px-4 py-2 rounded-full border border-brand-100 shadow-sm"
+                                            >
+                                                <Target className="w-4 h-4" /> Exact Dose
+                                            </motion.div>
                                         </div>
                                     </div>
 
-                                    <div className="text-center relative z-10">
-                                        <div className="flex items-start justify-center leading-none transform translate-x-4">
-                                            <span className="text-[10rem] font-display text-white tracking-tighter">15</span>
-                                            <span className="text-6xl font-display text-brand-500 mt-6 ml-1">g</span>
-                                        </div>
-                                        <div className="space-y-1 mt-4">
-                                            <span className="text-xl font-medium text-gray-300 block tracking-widest uppercase">Carbohydrates</span>
-                                            <span className="text-sm font-bold text-brand-500 block uppercase tracking-wider">Exact Dose</span>
-                                        </div>
+                                    {/* Footer Label */}
+                                    <div className="absolute bottom-8 text-center px-6">
+                                        <p className="text-xs text-gray-400 max-w-[200px] mx-auto leading-relaxed">
+                                            Following ADA & AHA clinical guidelines for hypoglycemia.
+                                        </p>
                                     </div>
-
-                                    {/* Medical cross pattern background */}
-                                    <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 2px, transparent 2px)', backgroundSize: '24px 24px' }}></div>
                                 </div>
                             </div>
                         </div>
