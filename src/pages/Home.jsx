@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { ArrowUpRight, Zap, Target, Package, ChevronDown } from 'lucide-react';
+import { ArrowUpRight, Zap, Target, Package, ChevronDown, Clock, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Animated section wrapper
@@ -288,88 +288,66 @@ const Home = () => {
                                     <div className="w-full flex justify-between items-center mb-6">
                                         <div className="flex items-center gap-2">
                                             <div className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
-                                            <span className="text-brand-900 font-bold text-sm tracking-wide uppercase">Absorption Rate</span>
-                                        </div>
-                                        <div className="px-3 py-1 bg-brand-50 rounded-full border border-brand-100">
-                                            <span className="text-brand-600 text-xs font-bold">Clinical Data</span>
+                                            <span className="text-brand-900 font-bold text-sm tracking-wide uppercase">Efficiency Comparison</span>
                                         </div>
                                     </div>
 
-                                    {/* Chart Area */}
-                                    <div className="w-full flex-1 relative bg-cream-50/50 rounded-2xl border border-cream-100 p-4 overflow-hidden">
-                                        {/* Grid Lines */}
-                                        <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 p-4 pointer-events-none opacity-30">
-                                            {[...Array(5)].map((_, i) => (
-                                                <div key={`h-${i}`} className="border-t border-gray-300 w-full h-0 absolute" style={{ top: `${i * 25}%`, left: 0, right: 0 }} />
-                                            ))}
-                                            {[...Array(5)].map((_, i) => (
-                                                <div key={`v-${i}`} className="border-l border-gray-300 h-full w-0 absolute" style={{ left: `${i * 25}%`, top: 0, bottom: 0 }} />
-                                            ))}
+                                    {/* New 'Speed Bar' Comparison Visual */}
+                                    <div className="w-full flex-1 relative flex flex-col justify-center gap-8">
+
+                                        {/* PocketGluca Bar */}
+                                        <div className="relative">
+                                            <div className="flex justify-between items-end mb-2">
+                                                <span className="font-bold text-gray-900 flex items-center gap-2">
+                                                    <span className="p-1 bg-brand-100 rounded text-brand-600"><Zap className="w-4 h-4" fill="currentColor" /></span>
+                                                    PocketGluca
+                                                </span>
+                                                <span className="text-brand-600 font-bold text-sm">10 mins</span>
+                                            </div>
+                                            <div className="h-4 bg-gray-100 rounded-full overflow-hidden relative">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "95%" }}
+                                                    transition={{ duration: 1, ease: "easeOut" }}
+                                                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"
+                                                />
+                                            </div>
+                                            <div className="mt-2 text-xs text-brand-600 font-medium ml-1">Fast Acting Formula</div>
                                         </div>
 
-                                        {/* SVG Chart */}
-                                        <svg viewBox="0 0 300 200" className="w-full h-full overflow-visible relative z-10">
-                                            {/* Tablet Curve - Slow */}
-                                            <path
-                                                d="M0,200 C100,195 200,160 300,140"
-                                                fill="none"
-                                                stroke="#9CA3AF"
-                                                strokeWidth="2"
-                                                strokeDasharray="4 4"
-                                            />
-                                            <text x="260" y="130" fill="#9CA3AF" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Tablets</text>
-
-                                            {/* Liquid Curve - Fast */}
-                                            <motion.path
-                                                d="M0,200 C40,180 100,50 300,40"
-                                                fill="none"
-                                                stroke="#FF5C28"
-                                                strokeWidth="4"
-                                                strokeLinecap="round"
-                                                initial={{ pathLength: 0 }}
-                                                whileInView={{ pathLength: 1 }}
-                                                transition={{ duration: 1.5, ease: "easeOut" }}
-                                            />
-
-                                            {/* Peak Marker (10m approx at x=150) */}
-                                            <motion.line
-                                                x1="150" y1="200" x2="150" y2="40"
-                                                stroke="#FF5C28"
-                                                strokeWidth="2"
-                                                strokeDasharray="4 4"
-                                                opacity="0.4"
-                                                initial={{ height: 0 }}
-                                                whileInView={{ height: 160 }}
-                                            />
-                                            <motion.circle
-                                                cx="150" cy="55" r="6"
-                                                fill="white"
-                                                stroke="#FF5C28"
-                                                strokeWidth="3"
-                                                initial={{ scale: 0 }}
-                                                whileInView={{ scale: 1 }}
-                                                transition={{ delay: 1.2 }}
-                                            />
-
-                                            {/* Label Box */}
-                                            <motion.g
-                                                initial={{ opacity: 0, y: 10 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 1.5 }}
-                                            >
-                                                <rect x="160" y="30" width="85" height="24" rx="6" fill="white" stroke="#FF5C28" strokeWidth="1" />
-                                                <text x="202" y="46" textAnchor="middle" fill="#FF5C28" fontSize="10" fontWeight="bold">Recovery Zone</text>
-                                            </motion.g>
-                                        </svg>
-
-                                        {/* Axis Labels */}
-                                        <div className="absolute bottom-1 left-4 right-4 flex justify-between text-[10px] text-gray-400 font-mono">
-                                            <span>0m</span>
-                                            <span>5m</span>
-                                            <span className="text-brand-600 font-bold">10m</span>
-                                            <span>15m</span>
-                                            <span>20m</span>
+                                        {/* Traditional Tabs Bar */}
+                                        <div className="relative opacity-60">
+                                            <div className="flex justify-between items-end mb-2">
+                                                <span className="font-medium text-gray-600 flex items-center gap-2">
+                                                    <span className="p-1 bg-gray-100 rounded text-gray-400"><Clock className="w-4 h-4" /></span>
+                                                    Traditional Methods
+                                                </span>
+                                                <span className="text-gray-500 font-medium text-sm">30-45 mins</span>
+                                            </div>
+                                            <div className="h-4 bg-gray-100 rounded-full overflow-hidden relative">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "30%" }}
+                                                    transition={{ duration: 1.5, ease: "easeOut" }}
+                                                    className="absolute inset-y-0 left-0 bg-gray-400 rounded-full"
+                                                />
+                                            </div>
+                                            <div className="mt-2 text-xs text-gray-400 ml-1">Digestion Required</div>
                                         </div>
+
+                                        {/* Winner Badge */}
+                                        <motion.div
+                                            initial={{ scale: 0, opacity: 0 }}
+                                            whileInView={{ scale: 1, opacity: 1 }}
+                                            transition={{ delay: 1.2, type: "spring" }}
+                                            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-4 bg-white shadow-xl p-3 rounded-2xl border border-green-100 hidden md:block"
+                                        >
+                                            <div className="flex items-center gap-2 text-green-600 font-bold text-sm">
+                                                <Activity className="w-5 h-5" />
+                                                3x Faster
+                                            </div>
+                                        </motion.div>
+
                                     </div>
                                 </div>
                             </div>
@@ -448,7 +426,7 @@ const Home = () => {
                                             {[...Array(12)].map((_, i) => (
                                                 <div
                                                     key={i}
-                                                    className="absolute w-1 h-2 bg-gray-200 top-0 left-1/2 -translate-x-1/2 origin-bottom"
+                                                    className="absolute w-2 h-1 bg-gray-200 top-0 left-1/2 -translate-x-1/2 origin-bottom"
                                                     style={{
                                                         transform: `rotate(${i * 30}deg) translateY(0px)`,
                                                         height: '100%',
