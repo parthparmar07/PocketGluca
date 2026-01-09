@@ -412,88 +412,52 @@ const Home = () => {
                             {/* Right - Visual */}
                             <div className="relative order-1 lg:order-2">
                                 <div className="aspect-square bg-white rounded-[3rem] relative overflow-hidden border border-cream-100 shadow-xl shadow-brand-500/5 flex flex-col items-center justify-center p-8">
-                                    <div className="absolute top-8 right-8">
-                                        <div className="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full border border-green-100">
-                                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                                            <span className="text-[10px] font-bold uppercase tracking-wide">Optimal</span>
-                                        </div>
-                                    </div>
 
-                                    {/* Smart Gauge Container */}
-                                    <div className="relative w-64 h-64 flex items-center justify-center">
-                                        {/* Outer tick marks */}
-                                        <div className="absolute inset-0">
-                                            {[...Array(12)].map((_, i) => (
-                                                <div
-                                                    key={i}
-                                                    className="absolute w-2 h-1 bg-gray-200 top-0 left-1/2 -translate-x-1/2 origin-bottom"
-                                                    style={{
-                                                        transform: `rotate(${i * 30}deg) translateY(0px)`,
-                                                        height: '100%',
-                                                        width: '2px'
-                                                    }}
-                                                >
-                                                    <div className="w-full h-3 bg-gray-200" />
-                                                </div>
-                                            ))}
-                                        </div>
+                                    {/* Background Glow */}
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.brand.50),transparent_70%)] opacity-60" />
 
-                                        {/* Progress Rings (SVG) */}
-                                        <svg className="w-full h-full -rotate-90 transform relative z-10">
-                                            {/* Background Track */}
-                                            <circle
-                                                cx="128" cy="128" r="100"
-                                                fill="none"
-                                                stroke="#F3F4F6"
-                                                strokeWidth="12"
-                                                strokeLinecap="round"
-                                            />
-                                            {/* Active Progress */}
-                                            <motion.circle
-                                                cx="128" cy="128" r="100"
-                                                fill="none"
-                                                stroke="#FF5C28"
-                                                strokeWidth="12"
-                                                strokeLinecap="round"
-                                                strokeDasharray={2 * Math.PI * 100}
-                                                strokeDashoffset={2 * Math.PI * 100}
-                                                whileInView={{ strokeDashoffset: 0 }}
-                                                viewport={{ once: false }}
-                                                transition={{ duration: 1.5, ease: "easeOut" }}
-                                            />
-                                        </svg>
+                                    {/* Rotating Badge Visual */}
+                                    <div className="relative z-10 scale-110">
+                                        {/* Rotating Ring */}
+                                        <motion.div
+                                            className="absolute inset-0 flex items-center justify-center -m-12"
+                                            animate={{ rotate: 360 }}
+                                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                        >
+                                            <svg viewBox="0 0 200 200" className="w-64 h-64 opacity-15">
+                                                <defs>
+                                                    <path id="textCircle" d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0" />
+                                                </defs>
+                                                <text className="text-[11px] font-bold tracking-[0.22em] fill-gray-900 uppercase" style={{ textShadow: '0 0 0 rgba(0,0,0,0)' }}>
+                                                    <textPath xlinkHref="#textCircle">
+                                                        Clinical Precision • ADA Recommended •
+                                                    </textPath>
+                                                </text>
+                                            </svg>
+                                        </motion.div>
 
-                                        {/* Center Data */}
-                                        <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
-                                            <div className="flex items-baseline leading-none">
-                                                <motion.span
-                                                    className="text-7xl font-display text-gray-900 tracking-tighter"
-                                                    initial={{ opacity: 0, scale: 0.5 }}
-                                                    whileInView={{ opacity: 1, scale: 1 }}
-                                                    transition={{ delay: 0.5, type: "spring" }}
-                                                >
-                                                    15
-                                                </motion.span>
-                                                <span className="text-3xl font-display text-brand-500 ml-1">g</span>
-                                            </div>
-                                            <span className="text-gray-400 font-medium text-sm tracking-widest uppercase mt-2">Carbohydrates</span>
-
-                                            {/* Success Check */}
+                                        {/* Central Container */}
+                                        <div className="relative w-48 h-48 bg-white/80 backdrop-blur-sm rounded-full shadow-2xl flex flex-col items-center justify-center border-4 border-white ring-1 ring-gray-100 z-20">
                                             <motion.div
-                                                initial={{ scale: 0, opacity: 0 }}
+                                                initial={{ scale: 0.8, opacity: 0 }}
                                                 whileInView={{ scale: 1, opacity: 1 }}
-                                                transition={{ delay: 1.5, type: "spring" }}
-                                                className="absolute -bottom-12 flex items-center gap-2 text-brand-600 font-bold bg-brand-50 px-4 py-2 rounded-full border border-brand-100 shadow-sm"
+                                                transition={{ duration: 0.5, type: "spring" }}
+                                                className="flex flex-col items-center"
                                             >
-                                                <Target className="w-4 h-4" /> Exact Dose
+                                                <span className="text-7xl font-display font-bold text-gray-900 tracking-tighter leading-none">15</span>
+                                                <span className="text-2xl font-medium text-brand-500 -mt-1 block text-center">grams</span>
                                             </motion.div>
+
+                                            {/* Badge */}
+                                            <div className="absolute -bottom-4 bg-gray-900 text-white px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider flex items-center gap-1.5 shadow-lg shadow-gray-900/20">
+                                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" /> EXACT DOSE
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* Footer Label */}
                                     <div className="absolute bottom-8 text-center px-6">
-                                        <p className="text-xs text-gray-400 max-w-[200px] mx-auto leading-relaxed">
-                                            Following ADA & AHA clinical guidelines for hypoglycemia.
+                                        <p className="text-xs text-brand-800/60 font-medium max-w-[200px] mx-auto">
+                                            Rapid-acting carbohydrates
                                         </p>
                                     </div>
                                 </div>
